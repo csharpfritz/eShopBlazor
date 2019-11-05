@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace eShopLegacyWebForms.Models.Infrastructure
+namespace eShopLib
 {
     public static class PreconfiguredData
     {

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using eShopLegacyWebForms.Models;
 using System;
-using eShopLegacyWebForms.ViewModel;
+using eShopLib.ViewModels;
 
-namespace eShopLegacyWebForms.Services
+namespace eShopLib
 {
     public interface ICatalogService : IDisposable
     {

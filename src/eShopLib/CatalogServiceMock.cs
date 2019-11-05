@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using eShopLegacyWebForms.Models;
-using eShopLegacyWebForms.Models.Infrastructure;
-using eShopLegacyWebForms.ViewModel;
+using eShopLib.ViewModels;
 
-namespace eShopLegacyWebForms.Services
+namespace eShopLib
 {
     public class CatalogServiceMock : ICatalogService
     {

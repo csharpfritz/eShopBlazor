@@ -8,6 +8,10 @@ Move Services/ICatalogService.cs to eShopLib
 
 Move ViewModels/* to eShopLib
 
+Fix namespaces
+
+CatalogItem.cs -- Add DataAnnotations reference
+
 Add project reference to WebForms app
 
 Fix references, using statements

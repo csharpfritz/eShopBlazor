@@ -1,4 +1,5 @@
-﻿using eShopOnBlazor.Models.Infrastructure;
+﻿using eShopLib;
+using eShopOnBlazor.Models.Infrastructure;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;

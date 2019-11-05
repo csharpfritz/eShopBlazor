@@ -42,4 +42,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="2.2.12" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\eShopLib\eShopLib.csproj" />
+  </ItemGroup>
+
 </Project>
