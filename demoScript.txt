@@ -1,0 +1,81 @@
+Move all Models files to eShopLib project EXCEPT
+ Infrastructure/*.sql
+ Infrastructure/CatalogDbInitializer.cs
+ CatalogDbContenxt.cs
+ CatalogItemHiLoGenerator.cs
+
+Move Services/ICatalogService.cs to eShopLib
+
+Move ViewModels/* to eShopLib
+
+Add project reference to WebForms app
+
+Fix references, using statements
+
+Add netstandard 2.0 package reference to webforms app
+
+web.config  @26
+  <system.web>
+    <compilation debug="true" targetFramework="4.7.2">
+      <assemblies>
+        <add assembly="netstandard, Version=2.0.0.0, Culture=neutral, 
+            PublicKeyToken=cc7b13ffcd2ddd51"/>
+      </assemblies>
+    </compilation>
+
+Add to pages/namespaces
+        <add namespace="eShopLib" />
+        <add namespace="eShopLib.ViewModels" />
+
+
+
+Index.razor
+
+                @foreach (var catalogItem in Model.Data)
+                {
+                    <tr>
+                        <td>
+                            <img class="esh-thumbnail" src="@($"/Pics/{catalogItem.PictureFileName}")">
+                        </td>
+                        <td>
+                            <p>@catalogItem.Name</p>
+                        </td>
+                        <td>
+                            <p>@catalogItem.Description</p>
+                        </td>
+                        <td>
+                            <p>@catalogItem.CatalogBrand.Brand</p>
+                        </td>
+                        <td>
+                            <p>@catalogItem.CatalogType.Type</p>
+                        </td>
+                        <td>
+                            <span class="esh-price">@catalogItem.Price</span>
+                        </td>
+                        <td>
+                            <p>@catalogItem.PictureFileName</p>
+                        </td>
+                        <td>
+                            <p>@catalogItem.AvailableStock</p>
+                        </td>
+                        <td>
+                            <p>@catalogItem.RestockThreshold</p>
+                        </td>
+                        <td>
+                            <p>@catalogItem.MaxStockThreshold</p>
+                        </td>
+                        <td>
+                            <a href="@($"/Catalog/Edit/{catalogItem.Id}")" class="esh-table-link">
+                                Edit
+                            </a>
+                            |
+                            <a href="@($"/Catalog/Details/{catalogItem.Id}")" class="esh-table-link">
+                                Details
+                            </a>
+                            |
+                            <a href="@($"/Catalog/Delete/{catalogItem.Id}")" class="esh-table-link">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
