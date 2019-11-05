@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject ICatalogService CatalogService
+@using eShopOnBlazor.Components
 
 <div class="esh-table">
     <p class="esh-link-wrapper">
@@ -8,83 +9,74 @@
         </a>
     </p>
 
-    @if (Model == null || !Model.Data.Any())
-    {
-        <table>
+    <ListView Items="Model.Data" TItem="CatalogItem">
+        <EmptyDataTemplate>
             <tr>
                 <td>No data was returned.</td>
             </tr>
-        </table>
-    }
-    else
-    {
-        <table class="table">
-            <thead>
-                <tr class="esh-table-header">
-                    <th></th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Brand</th>
-                    <th>Type</th>
-                    <th>Price</th>
-                    <th>Picture name</th>
-                    <th>Stock</th>
-                    <th>Restock</th>
-                    <th>Max stock</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var catalogItem in Model.Data)
-                {
-                    <tr>
-                        <td>
-                            <img class="esh-thumbnail" src="@($"/Pics/{catalogItem.PictureFileName}")">
-                        </td>
-                        <td>
-                            <p>@catalogItem.Name</p>
-                        </td>
-                        <td>
-                            <p>@catalogItem.Description</p>
-                        </td>
-                        <td>
-                            <p>@catalogItem.CatalogBrand.Brand</p>
-                        </td>
-                        <td>
-                            <p>@catalogItem.CatalogType.Type</p>
-                        </td>
-                        <td>
-                            <span class="esh-price">@catalogItem.Price</span>
-                        </td>
-                        <td>
-                            <p>@catalogItem.PictureFileName</p>
-                        </td>
-                        <td>
-                            <p>@catalogItem.AvailableStock</p>
-                        </td>
-                        <td>
-                            <p>@catalogItem.RestockThreshold</p>
-                        </td>
-                        <td>
-                            <p>@catalogItem.MaxStockThreshold</p>
-                        </td>
-                        <td>
-                            <a href="@($"/Catalog/Edit/{catalogItem.Id}")" class="esh-table-link">
-                                Edit
-                            </a>
-                            |
-                            <a href="@($"/Catalog/Details/{catalogItem.Id}")" class="esh-table-link">
-                                Details
-                            </a>
-                            |
-                            <a href="@($"/Catalog/Delete/{catalogItem.Id}")" class="esh-table-link">
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
+        </EmptyDataTemplate>
+        <TableHeader>
+            <tr class="esh-table-header">
+                <th></th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Brand</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Picture name</th>
+                <th>Stock</th>
+                <th>Restock</th>
+                <th>Max stock</th>
+            </tr>
+        </TableHeader>
+        <RowTemplate Context="catalogItem">
+            <tr>
+                <td>
+                    <img class="esh-thumbnail" src="@($"/Pics/{catalogItem.PictureFileName}")">
+                </td>
+                <td>
+                    <p>@catalogItem.Name</p>
+                </td>
+                <td>
+                    <p>@catalogItem.Description</p>
+                </td>
+                <td>
+                    <p>@catalogItem.CatalogBrand.Brand</p>
+                </td>
+                <td>
+                    <p>@catalogItem.CatalogType.Type</p>
+                </td>
+                <td>
+                    <span class="esh-price">@catalogItem.Price</span>
+                </td>
+                <td>
+                    <p>@catalogItem.PictureFileName</p>
+                </td>
+                <td>
+                    <p>@catalogItem.AvailableStock</p>
+                </td>
+                <td>
+                    <p>@catalogItem.RestockThreshold</p>
+                </td>
+                <td>
+                    <p>@catalogItem.MaxStockThreshold</p>
+                </td>
+                <td>
+                    <a href="@($"/Catalog/Edit/{catalogItem.Id}")" class="esh-table-link">
+                        Edit
+                    </a>
+                    |
+                    <a href="@($"/Catalog/Details/{catalogItem.Id}")" class="esh-table-link">
+                        Details
+                    </a>
+                    |
+                    <a href="@($"/Catalog/Delete/{catalogItem.Id}")" class="esh-table-link">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        </RowTemplate>
+    </ListView>
 </div>
 
 <div class="esh-pager">
