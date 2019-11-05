@@ -432,8 +432,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\eShopLib\eShopLib.csproj">
-      <Project>{A15A193F-13C9-4056-B1DA-8017DBC3F737}</Project>
+    <ProjectReference Include="..\eShopLib\eShopLib.csproj">
+      <Project>{96e0ceb3-f652-4c4e-a4b8-ff06192e259c}</Project>
       <Name>eShopLib</Name>
     </ProjectReference>
   </ItemGroup>
