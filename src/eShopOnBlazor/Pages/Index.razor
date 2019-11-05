@@ -1,5 +1,5 @@
 ﻿@page "/"
-@inject ICatalogService CatalogService
+@inherits IndexBase
 
 <div class="esh-table">
     <p class="esh-link-wrapper">
@@ -73,26 +73,5 @@
 </div>
 
 @code {
-  int pageSize = 10;
-  int pageIndex = 0;
-  PaginatedItemsViewModel<CatalogItem> Model;
 
-  protected override void OnParametersSet() => LoadPage();
-
-  void Previous()
-  {
-      pageIndex--;
-      LoadPage();
-  }
-
-  void Next()
-  {
-      pageIndex++;
-      LoadPage();
-  }
-
-  void LoadPage()
-  {
-      Model = CatalogService.GetCatalogItemsPaginated(pageSize, pageIndex);
-  }
 }
