@@ -1,4 +1,5 @@
 ﻿using eShopLegacyWebForms.Models.Infrastructure;
+using eShopLib;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;

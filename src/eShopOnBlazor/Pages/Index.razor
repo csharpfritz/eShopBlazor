@@ -8,7 +8,7 @@
         </a>
     </p>
 
-    @if (paginatedCatalogItems == null || !paginatedCatalogItems.Data.Any())
+    @if (Model == null || !Model.Data.Any())
     {
         <table>
             <tr>
@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var catalogItem in paginatedCatalogItems.Data)
+                @foreach (var catalogItem in Model.Data)
                 {
                     <tr>
                         <td>
@@ -99,10 +99,10 @@
                 }
 
                 <span class="esh-pager-item">
-                    Showing @paginatedCatalogItems.ItemsPerPage of @paginatedCatalogItems.TotalItems products - Page @(paginatedCatalogItems.ActualPage + 1) - @paginatedCatalogItems.TotalPages
+                    Showing @Model.ItemsPerPage of @Model.TotalItems products - Page @(Model.ActualPage + 1) - @Model.TotalPages
                 </span>
 
-                @if (pageIndex < paginatedCatalogItems.TotalPages - 1)
+                @if (pageIndex < Model.TotalPages - 1)
                 {
                     <a @onclick="Next" class="esh-pager-item esh-pager-item--navigable">
                         Next
@@ -114,26 +114,26 @@
 </div>
 
 @code {
-    int pageSize = 10;
-    int pageIndex = 0;
-    PaginatedItemsViewModel<CatalogItem> paginatedCatalogItems;
+  int pageSize = 10;
+  int pageIndex = 0;
+  PaginatedItemsViewModel<CatalogItem> Model;
 
-    protected override void OnParametersSet() => LoadPage();
+  protected override void OnParametersSet() => LoadPage();
 
-    void Previous()
-    {
-        pageIndex--;
-        LoadPage();
-    }
+  void Previous()
+  {
+      pageIndex--;
+      LoadPage();
+  }
 
-    void Next()
-    {
-        pageIndex++;
-        LoadPage();
-    }
+  void Next()
+  {
+      pageIndex++;
+      LoadPage();
+  }
 
-    void LoadPage()
-    {
-        paginatedCatalogItems = CatalogService.GetCatalogItemsPaginated(pageSize, pageIndex);
-    }
+  void LoadPage()
+  {
+      Model = CatalogService.GetCatalogItemsPaginated(pageSize, pageIndex);
+  }
 }

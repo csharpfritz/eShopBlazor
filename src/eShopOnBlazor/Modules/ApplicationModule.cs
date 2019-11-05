@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using eShopLib;
 using eShopOnBlazor.Models;
 using eShopOnBlazor.Models.Infrastructure;
 using eShopOnBlazor.Services;

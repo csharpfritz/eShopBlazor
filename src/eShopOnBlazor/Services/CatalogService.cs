@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using eShopOnBlazor.ViewModel;
+using eShopLib;
+using eShopLib.ViewModels;
 
 namespace eShopOnBlazor.Services
 {

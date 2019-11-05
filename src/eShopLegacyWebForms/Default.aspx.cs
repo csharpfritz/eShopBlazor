@@ -1,10 +1,11 @@
 ﻿using eShopLegacyWebForms.Models;
 using eShopLegacyWebForms.Services;
-using eShopLegacyWebForms.ViewModel;
 using System;
 using System.Linq;
 using System.Web.UI;
 using log4net;
+using eShopLib;
+using eShopLib.ViewModels;
 
 namespace eShopLegacyWebForms
 {

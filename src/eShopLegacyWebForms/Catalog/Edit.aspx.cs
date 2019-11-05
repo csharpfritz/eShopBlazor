@@ -1,5 +1,6 @@
 ﻿using eShopLegacyWebForms.Models;
 using eShopLegacyWebForms.Services;
+using eShopLib;
 using log4net;
 using System;
 using System.Collections.Generic;
