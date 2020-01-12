@@ -1,6 +1,6 @@
 ﻿@page "/"
 @inject ICatalogService CatalogService
-@using eShopOnBlazor.Components
+@using BlazorWebFormsComponents
 
 <div class="esh-table">
     <p class="esh-link-wrapper">
@@ -9,74 +9,74 @@
         </a>
     </p>
 
-    <ListView Items="Model.Data" TItem="CatalogItem">
+		<table>
+			<tr class="esh-table-header">
+				<th></th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Brand</th>
+				<th>Type</th>
+				<th>Price</th>
+				<th>Picture name</th>
+				<th>Stock</th>
+				<th>Restock</th>
+				<th>Max stock</th>
+			</tr>
+    <ListView Items="Model.Data" ItemType="CatalogItem" Context="Item">
         <EmptyDataTemplate>
             <tr>
                 <td>No data was returned.</td>
             </tr>
         </EmptyDataTemplate>
-        <TableHeader>
-            <tr class="esh-table-header">
-                <th></th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Brand</th>
-                <th>Type</th>
-                <th>Price</th>
-                <th>Picture name</th>
-                <th>Stock</th>
-                <th>Restock</th>
-                <th>Max stock</th>
-            </tr>
-        </TableHeader>
-        <RowTemplate Context="catalogItem">
+        <ItemTemplate>
             <tr>
                 <td>
-                    <img class="esh-thumbnail" src="@($"/Pics/{catalogItem.PictureFileName}")">
+                    <img class="esh-thumbnail" src="@($"/Pics/{Item.PictureFileName}")">
                 </td>
                 <td>
-                    <p>@catalogItem.Name</p>
+                    <p>@Item.Name</p>
                 </td>
                 <td>
-                    <p>@catalogItem.Description</p>
+                    <p>@Item.Description</p>
                 </td>
                 <td>
-                    <p>@catalogItem.CatalogBrand.Brand</p>
+                    <p>@Item.CatalogBrand.Brand</p>
                 </td>
                 <td>
-                    <p>@catalogItem.CatalogType.Type</p>
+                    <p>@Item.CatalogType.Type</p>
                 </td>
                 <td>
-                    <span class="esh-price">@catalogItem.Price</span>
+                    <span class="esh-price">@Item.Price</span>
                 </td>
                 <td>
-                    <p>@catalogItem.PictureFileName</p>
+                    <p>@Item.PictureFileName</p>
                 </td>
                 <td>
-                    <p>@catalogItem.AvailableStock</p>
+                    <p>@Item.AvailableStock</p>
                 </td>
                 <td>
-                    <p>@catalogItem.RestockThreshold</p>
+                    <p>@Item.RestockThreshold</p>
                 </td>
                 <td>
-                    <p>@catalogItem.MaxStockThreshold</p>
+                    <p>@Item.MaxStockThreshold</p>
                 </td>
                 <td>
-                    <a href="@($"/Catalog/Edit/{catalogItem.Id}")" class="esh-table-link">
+                    <a href="@($"/Catalog/Edit/{Item.Id}")" class="esh-table-link">
                         Edit
                     </a>
                     |
-                    <a href="@($"/Catalog/Details/{catalogItem.Id}")" class="esh-table-link">
+                    <a href="@($"/Catalog/Details/{Item.Id}")" class="esh-table-link">
                         Details
                     </a>
                     |
-                    <a href="@($"/Catalog/Delete/{catalogItem.Id}")" class="esh-table-link">
+                    <a href="@($"/Catalog/Delete/{Item.Id}")" class="esh-table-link">
                         Delete
                     </a>
                 </td>
             </tr>
-        </RowTemplate>
+        </ItemTemplate>
     </ListView>
+  </table>
 </div>
 
 <div class="esh-pager">

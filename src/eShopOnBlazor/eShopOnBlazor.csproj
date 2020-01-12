@@ -40,6 +40,7 @@
     <PackageReference Include="EntityFramework" Version="6.3.0-preview9-19423-04" />
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="2.2.12" />
+	  <PackageReference Include="Fritz.BlazorWebFormsComponents" Version="0.3.0" />
   </ItemGroup>
 
   <ItemGroup>
