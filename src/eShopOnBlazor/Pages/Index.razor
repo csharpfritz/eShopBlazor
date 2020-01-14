@@ -9,20 +9,27 @@
         </a>
     </p>
 
-		<table>
-			<tr class="esh-table-header">
-				<th></th>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Brand</th>
-				<th>Type</th>
-				<th>Price</th>
-				<th>Picture name</th>
-				<th>Stock</th>
-				<th>Restock</th>
-				<th>Max stock</th>
-			</tr>
-    <ListView Items="Model.Data" ItemType="CatalogItem" Context="Item">
+    <ListView @ref="productList" ItemPlaceholderID="itemPlaceHolder" 
+              runat="server" ItemType="CatalogItem" Context="Item">
+			<LayoutTemplate Context="itemPlaceholder">
+				<table>
+					<tr class="esh-table-header">
+						<th></th>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Brand</th>
+						<th>Type</th>
+						<th>Price</th>
+						<th>Picture name</th>
+						<th>Stock</th>
+						<th>Restock</th>
+						<th>Max stock</th>
+					</tr>
+					<tbody>
+						@itemPlaceholder
+          </tbody>
+				</table>
+			</LayoutTemplate>
         <EmptyDataTemplate>
             <tr>
                 <td>No data was returned.</td>
@@ -76,7 +83,6 @@
             </tr>
         </ItemTemplate>
     </ListView>
-  </table>
 </div>
 
 <div class="esh-pager">
@@ -106,26 +112,38 @@
 </div>
 
 @code {
-  int pageSize = 10;
-  int pageIndex = 0;
-  PaginatedItemsViewModel<CatalogItem> Model;
 
-  protected override void OnParametersSet() => LoadPage();
+	protected ListView<CatalogItem> productList;
 
-  void Previous()
-  {
-      pageIndex--;
-      LoadPage();
-  }
+	int pageSize = 10;
+	int pageIndex = 0;
+	PaginatedItemsViewModel<CatalogItem> Model;
 
-  void Next()
-  {
-      pageIndex++;
-      LoadPage();
-  }
+	protected override void OnParametersSet() => LoadPage();
 
-  void LoadPage()
-  {
-      Model = CatalogService.GetCatalogItemsPaginated(pageSize, pageIndex);
-  }
+	void Previous()
+	{
+		pageIndex--;
+		LoadPage();
+	}
+
+	void Next()
+	{
+		pageIndex++;
+		LoadPage();
+	}
+
+	void LoadPage()
+	{
+		Model = CatalogService.GetCatalogItemsPaginated(pageSize, pageIndex);
+	}
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+
+		productList.DataSource = Model.Data;
+		productList.DataBind();
+
+	}
+
 }
