@@ -1,0 +1,14 @@
+﻿<a href="@NavigateUrl" class="@CssClass">@ChildContent</a>
+
+@code {
+
+	[Parameter]
+	public string NavigateUrl { get; set; }
+
+	[Parameter]
+	public string CssClass { get; set; }
+
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
+
+}
