@@ -1,110 +1,136 @@
 ﻿@page "/Catalog/Details/{id:int}"
-@inject ICatalogService CatalogService
-@inject ILogger<Details> Logger
+@inject ICatalogService theCatalogService
+@inject ProductDiscovery discovery
+@inject ILogger<Details> theLogger
 
 <h2 class="esh-body-title">Details</h2>
 
 <div class="container">
-    <div class="row">
-        <img class="col-md-6 esh-picture" src="@($"/Pics/{_item.PictureFileName}")">
+	<div class="row">
 
-        <dl class="col-md-6 dl-horizontal">
-            <dt>
-                Name
-            </dt>
+		<div class="col-md-6">
+			<img class="esh-picture" style="max-width: 1000px" src="@($"/Pics/{_item.PictureFileName}")">
+		</div>
 
-            <dd>
-                @_item.Name
-            </dd>
+		<dl class="col-md-6 dl-horizontal">
+			<dt>
+				Name
+			</dt>
 
-            <dt>
-                Description
-            </dt>
+			<dd>
+				@_item.Name
+			</dd>
 
-            <dd>
-                @_item.Description
-            </dd>
+			<dt>
+				Description
+			</dt>
 
-            <dt>
-                Brand
-            </dt>
+			<dd>
+				@_item.Description
+			</dd>
 
-            <dd>
-                @_item.CatalogBrand.Brand
-            </dd>
+			<dt>
+				Brand
+			</dt>
 
-            <dt>
-                Type
-            </dt>
+			<dd>
+				@_item.CatalogBrand.Brand
+			</dd>
 
-            <dd>
-                @_item.CatalogType.Type
-            </dd>
-            <dt>
-                Price
-            </dt>
+			<dt>
+				Type
+			</dt>
 
-            <dd>
-                @_item.Price
-            </dd>
+			<dd>
+				@_item.CatalogType.Type
+			</dd>
+			<dt>
+				Price
+			</dt>
 
-            <dt>
-                Picture name
-            </dt>
+			<dd>
+				@_item.Price
+			</dd>
 
-            <dd>
-                @_item.PictureFileName
-            </dd>
+			<dt>
+				Picture name
+			</dt>
 
-            <dt>
-                Stock
-            </dt>
+			<dd>
+				@_item.PictureFileName
+			</dd>
 
-            <dd>
-                @_item.AvailableStock
-            </dd>
+			<dt>
+				Stock
+			</dt>
 
-            <dt>
-                Restock
-            </dt>
+			<dd>
+				@_item.AvailableStock
+			</dd>
 
-            <dd>
-                @_item.RestockThreshold
-            </dd>
+			<dt>
+				Restock
+			</dt>
 
-            <dt>
-                Max stock
-            </dt>
+			<dd>
+				@_item.RestockThreshold
+			</dd>
 
-            <dd>
-                @_item.MaxStockThreshold
-            </dd>
+			<dt>
+				Max stock
+			</dt>
 
-        </dl>
-    </div>
+			<dd>
+				@_item.MaxStockThreshold
+			</dd>
 
-    <div class="form-actions no-color esh-link-list">
-        <a href="@($"/Catalog/Edit/{_item.Id}")" class="esh-link-item">
-            Edit
-        </a>
-        |
-        <a href="/" class="esh-link-item">
-            Back to list
-        </a>
-    </div>
+		</dl>
+	</div>
+
+	<div class="form-actions no-color esh-link-list">
+		<a href="@($"/Catalog/Edit/{_item.Id}")" class="esh-link-item">
+			Edit
+		</a>
+		|
+		<a href="/" class="esh-link-item">
+			Back to list
+		</a>
+	</div>
+
+	@if (_Suggested.Any())
+	{
+		<div>
+			<h2>Other customers who bought this product also bought:</h2>
+			<div class="row">
+			@foreach (var item in _Suggested)
+			{
+				<div class="col-md-4">
+					<img class="esh-picture" src="@($"/Pics/{item.PictureFileName}")">
+						<h5><a href="/Catalog/Details/@item.Id">@item.Name</a></h5>
+				</div>
+			}
+			</div>
+		</div>
+	}
 
 </div>
 
 @code {
-    private CatalogItem _item;
+	private CatalogItem _item;
+	private IEnumerable<CatalogItem> _Suggested = Enumerable.Empty<CatalogItem>();
 
-    [Parameter]
-    public int Id { get; set; }
+	[Parameter]
+	public int Id { get; set; }
 
-    protected override void OnInitialized()
-    {
-        Logger.LogInformation("Now loading... /Catalog/Details/{Id}", Id);
+	protected override void OnParametersSet()
+	{
+		theLogger.LogInformation("Now loading... /Catalog/Details/{Id}", Id);
 
-        _item = CatalogService.FindCatalogItem(Id);
-    }
+		_item = theCatalogService.FindCatalogItem(Id);
+
+		var items = theCatalogService.GetCatalogItemsPaginated(1000, 0);
+		var suggested = discovery.SuggestProducts(Id.ToString(), items.Data.Where(i => i.Id != Id).Select(i => i.Id.ToString()), 3);
+		_Suggested = items.Data.Where(i => suggested.Any(s => s.ProductId == i.Id.ToString()));
+
+	}
 }

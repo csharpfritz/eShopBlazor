@@ -2,6 +2,7 @@
 using eShopLegacyWebForms.Models;
 using eShopLegacyWebForms.Models.Infrastructure;
 using eShopLegacyWebForms.Services;
+using eShopLib;
 
 namespace eShopLegacyWebForms.Modules
 {

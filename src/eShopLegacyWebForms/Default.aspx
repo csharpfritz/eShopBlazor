@@ -9,7 +9,7 @@
             </a>
         </p>
 
-        <asp:ListView ID="productList" ItemPlaceholderID="itemPlaceHolder" runat="server" ItemType="eShopLegacyWebForms.Models.CatalogItem">
+        <asp:ListView ID="productList" ItemPlaceholderID="itemPlaceHolder" runat="server" ItemType="eShopLib.CatalogItem">
             <EmptyDataTemplate>
                 <table>
                     <tr>
