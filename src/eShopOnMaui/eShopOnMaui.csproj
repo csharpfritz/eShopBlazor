@@ -65,7 +65,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\src\eShopLib\eShopLib.csproj" />
+	  <ProjectReference Include="..\eShopLib\eShopLib.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
