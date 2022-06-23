@@ -22,7 +22,7 @@ namespace eShopOnBlazor.Services
 
         public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex)
         {
-            var totalItems = db.CatalogItems.LongCount();
+            var totalItems = db.CatalogItems.Count();
 
             var itemsOnPage = db.CatalogItems
                 .Include(c => c.CatalogBrand)

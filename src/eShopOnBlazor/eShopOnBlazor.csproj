@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <LangVersion>7.3</LangVersion>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,9 +37,13 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.3" />
     <PackageReference Include="EntityFramework" Version="6.3.0-preview9-19423-04" />
+    <PackageReference Include="LinqToCsv" Version="1.5.0" />
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="2.2.12" />
-  </ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.ML" Version="1.7.1" />
+		<PackageReference Include="Microsoft.ML" Version="1.7.1" />
+		<PackageReference Include="Microsoft.ML.Recommender" Version="0.19.1" />
+	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\eShopLib\eShopLib.csproj" />
