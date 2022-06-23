@@ -1,6 +1,8 @@
 # eShopOnBlazor
 Migration of a traditional ASP.NET Web Forms app to Blazor, Blazor with .NET MAUI, and using ML.NET
 
+https://bit.ly/ModernizeDotNet
+
 ## Links for more learning material
 
 - [dot.net](https://dot.net) - .NET Home for tools, downloads, training material, and more
