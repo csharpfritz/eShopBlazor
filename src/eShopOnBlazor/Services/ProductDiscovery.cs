@@ -11,8 +11,13 @@ namespace eShopOnBlazor.Services;
 
 public class ProductDiscovery
 {
-	
-	internal const string MODEL_PATH = "Setup/productModel.zip";
+
+  /// <summary>
+  /// This is derived from the Movie Recommender demo on the Microsoft Docs at:
+  /// https://learn.microsoft.com/dotnet/machine-learning/tutorials/movie-recommendation
+  /// </summary>
+
+  internal const string MODEL_PATH = "Setup/productModel.zip";
 	MLContext _Context = new MLContext();
 	ITransformer _Model;
 	private PredictionEngine<ProductPurchase, ProductPrediction> _PredictionEngine;
