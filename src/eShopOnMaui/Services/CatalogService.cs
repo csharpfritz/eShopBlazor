@@ -12,7 +12,7 @@ public class CatalogService : ICatalogService
 
 	public CatalogService()
 	{
-		_BaseURL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:51190" : "https://localhost:51189/";
+		_BaseURL = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:51190" : "https://localhost:55250/";
 	}
 
 	private HttpClient GetHttpClient() 
